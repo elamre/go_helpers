@@ -1,2 +1,2 @@
 # go_helpers
-Helper functions for me
+Queue is from https://github.com/sheerun/queue adjusted to use generics
