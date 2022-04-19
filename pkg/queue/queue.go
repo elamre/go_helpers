@@ -35,7 +35,7 @@ func New[T comparable]() *Queue[T] {
 	return q
 }
 
-// Removes all elements from queue
+// Clean Removes all elements from queue
 func (q *Queue[T]) Clean() {
 	q.mutex.Lock()
 	defer q.mutex.Unlock()
@@ -48,7 +48,7 @@ func (q *Queue[T]) Clean() {
 	q.count = 0
 }
 
-// Returns the number of elements in queue
+// Length Returns the number of elements in queue
 func (q *Queue[T]) Length() int {
 	q.mutex.Lock()
 	defer q.mutex.Unlock()
@@ -56,7 +56,7 @@ func (q *Queue[T]) Length() int {
 	return len(q.items)
 }
 
-// resizes the queue to fit exactly twice its current contents
+// resize the queue to fit exactly twice its current contents
 // this can result in shrinking if the queue is less than half-full
 func (q *Queue[T]) resize() {
 	newCount := q.count << 1
@@ -88,7 +88,7 @@ func (q *Queue[T]) notify() {
 	}
 }
 
-// Adds one element at the back of the queue
+// Append adds one element at the back of the queue
 func (q *Queue[T]) Append(elem T) {
 	q.mutex.Lock()
 	defer q.mutex.Unlock()
@@ -122,7 +122,7 @@ func (q *Queue[T]) newId() int64 {
 	}
 }
 
-// Adds one element at the front of queue
+// Prepend adds one element at the front of queue
 func (q *Queue[T]) Prepend(elem T) {
 	q.mutex.Lock()
 	defer q.mutex.Unlock()
@@ -146,7 +146,7 @@ func (q *Queue[T]) Prepend(elem T) {
 	}
 }
 
-// Previews element at the front of queue
+// Front previews' element at the front of queue
 func (q *Queue[T]) Front() T {
 	var result T
 	q.mutex.Lock()
@@ -159,7 +159,7 @@ func (q *Queue[T]) Front() T {
 	return result
 }
 
-// Previews element at the back of queue
+// Back previews element at the back of queue
 func (q *Queue[T]) Back() T {
 	var result T
 	q.mutex.Lock()
@@ -216,7 +216,7 @@ func (q *Queue[T]) Pop() T {
 	}
 }
 
-// Removes one element from the queue
+// Remove one element from the queue
 func (q *Queue[T]) Remove(elem T) bool {
 	q.mutex.Lock()
 	defer q.mutex.Unlock()
